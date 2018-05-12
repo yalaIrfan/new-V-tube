@@ -1,18 +1,23 @@
 import {Input,Component, OnInit } from '@angular/core';
 import { Video } from '../video';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'video-detail',
   templateUrl: './video-detail.component.html',
   styleUrls: ['./video-detail.component.css'],
   //inputs:['video']
+  outputs:['updateVideoEvent','deleteVideoEvent']
 })
 export class VideoDetailComponent implements OnInit {
   @Input() video :Video;
   vid:Video;
 
-  constructor() { 
-    
+  private updateVideoEvent =new EventEmitter();
+  private deleteVideoEvent =new EventEmitter();
+  
+
+  constructor() {     
   }
 
   ngOnInit() {
@@ -26,6 +31,14 @@ export class VideoDetailComponent implements OnInit {
 
   ngOnChanges(){
     this.vid = Object.assign({},this.video);
+  }
+
+  updateVideo(){
+    this.updateVideoEvent.emit(this.vid);
+  }
+
+  deleteVideo(){
+    this.deleteVideoEvent.emit(this.vid);
   }
 
 }

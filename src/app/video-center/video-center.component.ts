@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { Video } from '../video';
 import { VideoService } from '../video.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-video-center',
   templateUrl: './video-center.component.html',
-  styleUrls: ['./video-center.component.css']
+  styleUrls: ['./video-center.component.css'],
+  providers:[ToastrService]
 })
 export class VideoCenterComponent implements OnInit {
 
-  constructor(private service:VideoService) { }
+  constructor(private service:VideoService,private toastr:ToastrService) {
+    }
 
   // videos:Video[] = [
   //   {"_id":"1","title":"Title 1","url":"url 1","description":"descrion 1"},
@@ -28,6 +31,17 @@ export class VideoCenterComponent implements OnInit {
     console.log("Inside v center",this.selVideo);
   }
 
+  onSaveNewVideo(video:Video){
+    this.service.addVideo(video).subscribe(data=>{
+      this.toastr.success('video insrted successfully..! ','Success');
+      this.videos.push(data as Video);
+      this.selVideo=data as Video;
+    },err=>{
+      this.toastr.error('Oops..! something went wrong.! ','Error');
+      console.error("Error while inserting new video ",err.message);
+    });
+  }
+
   
   ngOnInit() {
     this.service.getVideos().subscribe(data=>{
@@ -40,6 +54,28 @@ export class VideoCenterComponent implements OnInit {
 
   ngOnChanges(){
     
+  }
+
+  onUpdateVideoEvent(video:any){
+    this.service.updateVideo(video).subscribe(data=>{
+      this.toastr.success('video updated successfully..! ','Success');
+      this.videos.push(data as Video);
+      this.selVideo=null;
+    },err=>{
+      this.toastr.error('Oops..! something went wrong.! ','Error');
+    });
+  }
+
+  onDeleteVideoEvent(video:any){
+    this.service.updateVideo(video).subscribe(data=>{
+      this.toastr.success('video deleted successfully..! ','Success');
+      let index = this.videos.indexOf(video);
+      this.videos.splice(index,1);
+      //this.videos.push(data as Video);
+      this.selVideo=null;
+    },err=>{
+      this.toastr.error('Oops..! something went wrong.! ','Error');
+    });
   }
 
 }

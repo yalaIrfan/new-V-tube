@@ -1,0 +1,5 @@
+.abc{
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(207,174,180,1);
+-moz-box-shadow: 10px 10px 5px 0px rgba(207,174,180,1);
+box-shadow: 10px 10px 5px 0px rgba(207,174,180,1);
+}

@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { VideoCenterComponent } from './video-center/video-center.component';
@@ -14,6 +13,10 @@ import { VideoService } from './video.service';
 import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import { SafePipe } from './safe.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+ 
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,12 +28,14 @@ import { SafePipe } from './safe.pipe';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     FormsModule,
     HttpModule,
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [VideoService],
+  providers: [VideoService,ToastrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

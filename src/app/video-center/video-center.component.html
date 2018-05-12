@@ -1,13 +1,45 @@
-
 <div class="back">
   <div class="row">
-  <div class="col-sm-9">
-    <video-detail *ngIf="selVideo" [video]="selVideo"></video-detail>
-  </div>
+    <div class="col-sm-9">
+      <!-- <div *ngIf="!selVideo">
+        <h3>Play your fev video from the list</h3>
+      </div> -->
 
-  <div class="col-sm-3">
+      <div class="card" *ngIf="!selVideo">
+        <h3 class=" card-header">New Video</h3>
+          
+          <form class="well " #form="ngForm" (ngSubmit)="onSaveNewVideo(form.value)"> 
+          <div style="width:94%;margin: 1.5%;">  
+            
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" class="form-control" required name="title" placeholder="Title" ngModel>
+            </div>
+            <div class="form-group">
+                <label for="url">URl</label>
+                <input type="url" class="form-control" required name="url" placeholder="Embeded URL" ngModel>
+              </div>
+              <div class="form-group">
+                  <label for="description">Description</label>
+                  <textarea  class="form-control" required name="description" placeholder="Video Description" ngModel></textarea>
+                </div>
+          </div>
+                
+               <div class="card-footer"> <button class="btn btn-secondary" type="submit">Save</button> </div>
+          </form>
+      </div>
+
+      <video-detail 
+      (updateVideoEvent)="onUpdateVideoEvent($event)"
+      (deleteVideoEvent)="onDeleteVideoEvent($event)"
+       *ngIf="selVideo" [video]="selVideo"></video-detail>
+    </div>
+
+    <div class="col-sm-3">
+      <button type="button" style="margin-bottom: 1.3rem" (click)="selVideo=null"
+        class="btn btn-success btn-block">+ New Video </button>
       <video-list (SelectVideo)="onSelectedVideo($event)" [videos]="videos"></video-list>
     </div>
-</div>
+  </div>
 
 </div>

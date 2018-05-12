@@ -1,7 +1,11 @@
 <div>
+  
   <div>
-    <iframe width="100%" height="100%" [src]="vid.url | safe">
+ 
+    <iframe width="100%" height="350" [src]="vid.url | safe" 
+     frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
     </iframe>
+    
   </div>
   <form>
     <div class="form-group">
@@ -15,5 +19,8 @@
 
       <textarea class="form-control" name="description" required placeholder="Description" [(ngModel)]="vid.description"></textarea>
     </div>
+    <button type="button" class="btn btn-primary" (click)="updateVideo()">Update</button>
+    <button type="button" class="btn btn-danger" (click)="deleteVideo()">Delete</button>
+    
   </form>
 </div>
