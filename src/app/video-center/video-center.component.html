@@ -1,0 +1,13 @@
+
+<div class="back">
+  <div class="row">
+  <div class="col-sm-9">
+    <video-detail *ngIf="selVideo" [video]="selVideo"></video-detail>
+  </div>
+
+  <div class="col-sm-3">
+      <video-list (SelectVideo)="onSelectedVideo($event)" [videos]="videos"></video-list>
+    </div>
+</div>
+
+</div>

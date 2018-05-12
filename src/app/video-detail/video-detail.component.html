@@ -1,0 +1,19 @@
+<div>
+  <div>
+    <iframe width="100%" height="100%" [src]="vid.url | safe">
+    </iframe>
+  </div>
+  <form>
+    <div class="form-group">
+      <input type="input" class="form-control" name="title" required placeholder="Title" [(ngModel)]="vid.title">
+    </div>
+    <div class="form-group">
+
+      <input type="input" class="form-control" name="url" required placeholder="URL" [(ngModel)]="vid.url">
+    </div>
+    <div class="form-group">
+
+      <textarea class="form-control" name="description" required placeholder="Description" [(ngModel)]="vid.description"></textarea>
+    </div>
+  </form>
+</div>
