@@ -14,14 +14,6 @@ export class VideoCenterComponent implements OnInit {
   constructor(private service:VideoService,private toastr:ToastrService) {
     }
 
-  // videos:Video[] = [
-  //   {"_id":"1","title":"Title 1","url":"url 1","description":"descrion 1"},
-  //   {"_id":"2","title":"Title 2","url":"url 2","description":"descrion 2"},
-  //   {"_id":"3","title":"Title 3","url":"url 3","description":"descrion 3"},
-  //   {"_id":"4","title":"Title 4","url":"url 4","description":"descrion 4"},
-    
-  // ];
-
   videos:Array<Video>;
 
   selVideo:Video;
@@ -41,7 +33,6 @@ export class VideoCenterComponent implements OnInit {
       console.error("Error while inserting new video ",err.message);
     });
   }
-
   
   ngOnInit() {
     this.service.getVideos().subscribe(data=>{
@@ -66,8 +57,9 @@ export class VideoCenterComponent implements OnInit {
     });
   }
 
-  onDeleteVideoEvent(video:any){
-    this.service.updateVideo(video).subscribe(data=>{
+  onDeleteVideoEvent(video:Video){
+    console.log('onDeleteVideo ');
+    this.service.deleteVideo(video).subscribe(data=>{
       this.toastr.success('video deleted successfully..! ','Success');
       let index = this.videos.indexOf(video);
       this.videos.splice(index,1);

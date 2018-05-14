@@ -19,7 +19,6 @@ export class VideoListComponent implements OnInit {
   }
 
   onSelect(vid: Video) {
-    console.log(vid);
     this.SelectVideo.emit(vid);
   }
 

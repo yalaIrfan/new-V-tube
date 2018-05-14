@@ -38,6 +38,7 @@ export class VideoDetailComponent implements OnInit {
   }
 
   deleteVideo(){
+    console.log('Raising an event :');
     this.deleteVideoEvent.emit(this.vid);
   }
 

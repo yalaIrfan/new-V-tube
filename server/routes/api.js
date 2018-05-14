@@ -5,6 +5,7 @@ const Video = require('../models/video');
 const _ = require('lodash');
 
 const db = "mongodb://yalairfan:yalairfan@ds219100.mlab.com:19100/playvideo";
+
 mongoose.connect(db, function (err) {
   if (!err) console.log("Connected to the mongoDB ");
   else console.log("error while connnecting mongoDb ", err.message);
@@ -50,17 +51,6 @@ router.post('/video', async function (req, res) {
     }
   });
 
-  //   newVideo = _.pick(req.body, ['_id','title', 'url', 'description']);
-  //   newVideo.save(function (err, insertedVideo) {
-  //     if (err) {
-  //       console.log('error while inserting video ', err.message);
-  //     } else {
-  //       res.json(insertedVideo);
-  //       console.log(insertedVideo);
-  //     }
-  //   });
-  //   console.log(result);
-
 });
 
 router.put('/video/:id', function (req, res) {
@@ -84,7 +74,6 @@ router.put('/video/:id', function (req, res) {
 router.delete('/video/:id', function (req, res) {
   console.log('Deleting a video ');
   Video.findByIdAndRemove(req.params.id, function (err, deletedVideo) {
-
     if (!err)
       res.json(deletedVideo);
     else res.send('error while deleting video: ', err.message)

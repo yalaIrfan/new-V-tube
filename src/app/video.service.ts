@@ -3,8 +3,6 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-
-
 import { Video } from './video';
 
 @Injectable()
@@ -35,5 +33,4 @@ export class VideoService {
   deleteVideo(video){
     return this.http.delete(this._deleteUrl+video._id);
   }
-
 }
