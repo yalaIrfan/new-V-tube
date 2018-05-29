@@ -37,7 +37,7 @@ router.get('/videos/:id', function (req, res) {
   });
 });
 
-router.post('/video', async function (req, res) {
+router.post('/video',  function (req, res) {
   console.log("POST req for new video");
   var newVideo = new Video();
   newVideo.title = req.body.title;
@@ -61,8 +61,6 @@ router.put('/video/:id', function (req, res) {
       url: req.body.url,
       description: req.body.description
     }
-  }, {
-    new: true
   }, function (err, video) {
     if (!err) {
       console.log('CCCCCCCCCC ', video);
