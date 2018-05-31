@@ -1,17 +1,19 @@
-import { Component, OnInit ,EventEmitter} from '@angular/core';
-import { Input, Output } from '@angular/core/src/metadata/directives';
+import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Input, Output } from '@angular/core';
 import { Video } from '../video';
 
 @Component({
   selector: 'video-list',
   templateUrl: './video-list.component.html',
   styleUrls: ['./video-list.component.css'],
-  inputs: ['videos'],
+  //inputs: ['videos'],
   outputs: ['SelectVideo']
 })
 export class VideoListComponent implements OnInit {
 
   public SelectVideo = new EventEmitter();
+  //  public @Input() user: string
+  @Input() videos: Video[];
 
   constructor() { }
 
