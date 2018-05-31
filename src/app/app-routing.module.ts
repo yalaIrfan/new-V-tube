@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { VideoCenterComponent } from './video-center/video-center.component';
 
 const routes: Routes = [
-  
+
   { path: 'home', component: HomeComponent },
   { path: 'videos', component: VideoCenterComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },

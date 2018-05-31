@@ -3,8 +3,9 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Video = require('../models/video');
 const _ = require('lodash');
+const config = require('../config/config');
 
-const db = "mongodb://yalairfan:yalairfan@ds219100.mlab.com:19100/playvideo";
+const db = config.database;
 
 mongoose.connect(db, function (err) {
   if (!err) console.log("Connected to the mongoDB ");

@@ -13,6 +13,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 export class VideoCenterComponent implements OnInit {
 
   constructor(private service: VideoService, private toastr: ToastrService) {
+
   }
 
   videos: Array<Video>;
@@ -49,17 +50,15 @@ export class VideoCenterComponent implements OnInit {
   }
 
   onUpdateVideoEvent(video: any) {
-
     this.service.updateVideo(video).subscribe(data => {
       this.toastr.success('video updated successfully..! ', 'Success');
       for (let v of this.videos) {
         if (v._id === video._id) {
           v.url = video.url;
           v.title = video.title;
-          v.url = video.url;
+          v.description = video.description;
         }
       }
-
       // this.videos.push(data as Video);
       this.selVideo = null;
     }, err => {
