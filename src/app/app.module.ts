@@ -8,7 +8,7 @@ import { VideoCenterComponent } from './video-center/video-center.component';
 import { VideoListComponent } from './video-list/video-list.component';
 import { VideoDetailComponent } from './video-detail/video-detail.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { VideoService } from './video.service';
 import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
@@ -16,6 +16,8 @@ import { SafePipe } from './safe.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
  
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
  
 @NgModule({
   declarations: [
@@ -24,13 +26,16 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
     VideoCenterComponent,
     VideoListComponent,
     VideoDetailComponent,
-    SafePipe
+    SafePipe,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     FormsModule,
+    ReactiveFormsModule ,
     HttpModule,
     HttpClientModule,
     AppRoutingModule

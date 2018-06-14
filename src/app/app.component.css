@@ -3,3 +3,64 @@
 -moz-box-shadow: 10px 10px 5px 0px rgba(207,174,180,1);
 box-shadow: 10px 10px 5px 0px rgba(207,174,180,1);
 }
+
+/* 
+.footer{
+    
+    right: 0;
+    bottom: -50%;
+    left: 0;
+    padding: 1rem;
+    max-height: 10% !important;
+    color: white;
+    border-top: 8px solid crimson;
+    background-color: #c91d61;
+    background: linear-gradient(20deg,blue,crimson,purple); 
+    background-size: 1000% 1000% !important;
+    -webkit-animation: changeColors 30s ease infinite;
+    -moz-animation: changeColors 30s ease infinite;
+    -o-animation: changeColors 30s ease infinite;
+    animation: changeColors 30s ease infinite;
+    
+}
+
+@-webkit-keyframes changeColors {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+} */
+
+.footer {
+    position: absolute;
+    height: 13%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #c91d61;
+    background: linear-gradient(20deg,blue,crimson,purple); 
+    background-size: 1000% 1000% !important;
+    -webkit-animation: changeColors 30s ease infinite;
+    -moz-animation: changeColors 30s ease infinite;
+    -o-animation: changeColors 30s ease infinite;
+    animation: changeColors 30s ease infinite;
+    text-align: center;
+  }
+  
+@-webkit-keyframes changeColors {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}

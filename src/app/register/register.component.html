@@ -1,0 +1,79 @@
+<div style="width:60%;margin: auto;padding: 2%; background-image: url(http://www.joburgchiropractor.co.za/images/background.jpg);"
+  class="form">
+  <div class="row">
+    <form class="col-xs-12 col-sm-12 col-md-12" [formGroup]='rForm' (ngSubmit)="onSubmit(rForm.value)">
+      <h2>Register</h2>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Enter Name *" formControlName="name" required maxlength="35">
+        <div *ngIf="rForm.controls['name'].touched && rForm.controls['name'].invalid">
+          <div *ngIf="rForm.get('name').hasError('required')">
+            <span>
+              <div class="fieldError"> Please enter a Name. </div>
+            </span>
+          </div>
+          <div *ngIf="rForm.get('name').hasError('minlength')">
+            <span>
+              <div class="fieldError"> Name must be at least 5 characters long. </div>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="email" class="form-control" placeholder="Enter email *"
+         formControlName="email" required maxlength="50">
+         <div *ngIf="rForm.controls['email'].touched && rForm.controls['email'].invalid">
+            <div *ngIf="rForm.get('email').hasError('required')">
+              <span>
+                <div class="fieldError"> Please enter a Email. </div>
+              </span>
+            </div>
+            <div *ngIf="rForm.get('email').hasError('minlength')">
+              <span>
+                <div class="fieldError"> Email must be at least 5 characters long. </div>
+              </span>
+            </div>
+            <div *ngIf="rForm.get('email').hasError('email') && !rForm.get('email').hasError('required')">
+                <span>
+                  <div class="fieldError">Invalid email.</div>
+                </span>
+              </div>
+          </div>
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" placeholder="Enter password *" 
+        formControlName="password" required maxlength="20">
+        <div *ngIf="rForm.controls['password'].touched && rForm.controls['password'].invalid">
+            <div *ngIf="rForm.get('password').hasError('required')">
+              <span>
+                <div class="fieldError"> Please enter a password. </div>
+              </span>
+            </div>
+            <div *ngIf="rForm.get('password').hasError('minlength')">
+              <span>
+                <div class="fieldError"> Password must be at least 5 characters long. </div>
+              </span>
+            </div>
+          </div>
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" placeholder="Confirm password *" 
+        formControlName="confPass" required maxlength="20">
+        <div *ngIf="rForm.controls['confPass'].touched && rForm.controls['confPass'].invalid">
+            <div *ngIf="rForm.get('confPass').hasError('required')">
+              <span>
+                <div class="fieldError"> Please enter a confirm password . </div>
+              </span>
+            </div>
+            <div *ngIf="rForm.get('confPass').hasError('minlength')">
+              <span>
+                <div class="fieldError"> Confirm password  must be at least 5 characters long. </div>
+              </span>
+            </div>
+          </div>
+      </div>
+      <button type="submit" class="btn btn-info" [disabled]="!rForm.valid">Register 
+        <i class="glyphicon glyphicon-send"></i>
+      </button>
+    </form>
+  </div>
+</div>

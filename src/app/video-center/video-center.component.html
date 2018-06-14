@@ -4,42 +4,72 @@
       <!-- <div *ngIf="!selVideo">
         <h3>Play your fev video from the list</h3>
       </div> -->
-
       <div class="card" *ngIf="!selVideo">
         <h3 class=" card-header">New Video</h3>
-          
-          <form class="well " #form="ngForm" (ngSubmit)="onSaveNewVideo(form.value)"> 
-          <div style="width:94%;margin: 1.5%;">  
-            
+        <!-- <form class="well " #videoForm="ngForm" (ngSubmit)="onSaveNewVideo(form.value)">  -->
+        <form class="well " #videoForm="ngForm" (ngSubmit)="onSaveNewVideo(videoForm.value)">
+          <div style="width:94%;margin: 1.5%;">
             <div class="form-group">
               <label for="title">Title</label>
-              <input type="text" class="form-control" required name="title" placeholder="Title" ngModel>
+              <input type="text" class="form-control" required minlength="5" maxlength="30" placeholder="Title"
+                [(ngModel)]="title" name="title" #titleControl="ngModel">
+               <div *ngIf="titleControl.errors && (titleControl.dirty || titleControl.touched)" 
+               class="errorMsg">
+                  <div [hidden]="!titleControl.errors.required">
+                      Title is required!
+                    </div>
+                    <div [hidden]="!titleControl.errors.minlength">
+                      Title must be at least 5 characters long.
+                    </div>
+                    <div [hidden]="!titleControl.errors.maxlength">
+                      Title cannot be more than 30 characters long.
+                    </div>
+              </div>
             </div>
             <div class="form-group">
-                <label for="url">URl</label>
-                <input type="url" class="form-control" required name="url" placeholder="Embeded URL" ngModel>
+              <label for="url">URL</label>
+              <input type="url" class="form-control" required name="url" pattern="https?://.+"
+               placeholder="Embeded URL Ex:   https://www.youtube.com/embed/3ysFu5" [(ngModel)]="url" #urlControl="ngModel">
+              <div *ngIf="urlControl.errors && (urlControl.dirty || urlControl.touched)" 
+              class="errorMsg">
+                 <div [hidden]="!urlControl.errors.required">
+                    URL is required!
+                   </div>
+                   <div [hidden]="!urlControl.errors.pattern">
+                      Invalid URL!
+                    </div>
+             </div>
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea class="form-control" required maxlength="250" minlength="10" 
+               name="description" placeholder="Video Description" [(ngModel)]="description" #descriptionControl="ngModel"></textarea>
+               <div *ngIf="descriptionControl.errors && (descriptionControl.dirty || descriptionControl.touched)" 
+               class="errorMsg">
+                  <div [hidden]="!descriptionControl.errors.required">
+                      Description is required!
+                    </div>
+                    <div [hidden]="!descriptionControl.errors.minlength">
+                        Description must be at least 10 characters long.
+                    </div>
+                    <div [hidden]="!descriptionControl.errors.maxlength">
+                        Description cannot be more than 250 characters long.
+                    </div>
               </div>
-              <div class="form-group">
-                  <label for="description">Description</label>
-                  <textarea  class="form-control" required name="description" placeholder="Video Description" ngModel></textarea>
-                </div>
+            </div>
           </div>
-                
-               <div class="card-footer"> <button class="btn btn-secondary" type="submit">Save</button> </div>
-          </form>
+          <div class="card-footer">
+            <button class="btn btn-secondary" type="submit">Save</button>
+          </div>
+        </form>
       </div>
-
-      <video-detail 
-      (updateVideoEvent)="onUpdateVideoEvent($event)"
-      (deleteVideoEvent)="onDeleteVideoEvent($event)"
-       *ngIf="selVideo" [video]="selVideo"></video-detail>
+      <video-detail (updateVideoEvent)="onUpdateVideoEvent($event)" (deleteVideoEvent)="onDeleteVideoEvent($event)" *ngIf="selVideo"
+        [video]="selVideo"></video-detail>
     </div>
 
     <div class="col-sm-3">
-      <button type="button" style="margin-bottom: 1.3rem" (click)="selVideo=null"
-        class="btn btn-success btn-block">+ New Video </button>
+      <button type="button" style="margin-bottom: 1.3rem" (click)="selVideo=null" class="btn btn-success btn-block">+ New Video </button>
       <video-list (SelectVideo)="onSelectedVideo($event)" [videos]="videos"></video-list>
     </div>
   </div>
-
 </div>

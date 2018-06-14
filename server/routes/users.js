@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const router = express.Router();
-const jwt = require('jsonwebtoken');
+//const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const User = require('../models/users');
 const _ = require('lodash');
@@ -64,17 +64,25 @@ router.get('/setup', function (req, res) {
       success: true
     });
   });
-})
+});
+
 router.get('/', function (req, res) {
   res.json({
     message: 'Welcome to the coolest API on earth!'
   });
-})
+});
 
 router.get('/all', function (req, res) {
   User.find({}, function (err, users) {
     res.json(users);
   });
+});
+
+router.post('/register', function (req, res) {
+  var user = new User();
+  user.name = req.body.title;
+  user.email = req.body.url;
+  user.password = req.body.description;
 });
 
 module.exports = router;
