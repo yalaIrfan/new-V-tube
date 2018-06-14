@@ -10,6 +10,7 @@ import { UserService } from '../user.service';
 })
 export class RegisterComponent implements OnInit {
   rForm: FormGroup;
+  message: String = '';
   constructor(private fb: FormBuilder, private userService: UserService) { }
 
   ngOnInit() {
@@ -37,9 +38,11 @@ export class RegisterComponent implements OnInit {
     });
   }
   onSubmit(user) {
-    console.log(user);
-    this.userService.registerUser(user).subscribe(res => {
-      console.log('Registered')
+    console.log('uyhjbjhbjhbjh ', user);
+    this.userService.registerUser(user).subscribe(message => {
+      console.log('Registered.! message', JSON.stringify(message));
+      this.message = 'Registered successfully..!';
+      this.rForm.reset();
     }, error => {
       console.error('error while registering..!');
     });
