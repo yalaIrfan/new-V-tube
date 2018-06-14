@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const User = require('../models/users');
 const _ = require('lodash');
 const config = require('../config/config');
-
+var bcrypt = require('bcryptjs');
 const db = config.database;
 
 
@@ -73,16 +73,29 @@ router.get('/', function (req, res) {
 });
 
 router.get('/all', function (req, res) {
+  console.log('hbhjbhjbjhb');
   User.find({}, function (err, users) {
     res.json(users);
   });
 });
 
 router.post('/register', function (req, res) {
+  console.log('User reg',req.body);
+  var hashedPassword = bcrypt.hashSync(req.body.password, 8);
   var user = new User();
-  user.name = req.body.title;
-  user.email = req.body.url;
-  user.password = req.body.description;
+  user.name = req.body.name;
+  user.email = req.body.email;
+  user.password = hashedPassword;
+  //user.admin=true;
+  
+  user.save(function(err,user){
+    if(err){
+      return res.status(500).send("There was a problem registering the user.");
+    }else{
+      console.log(user);
+      return res.status(200).send("User registered succesfully..!");
+    }
+  });
 });
 
 module.exports = router;

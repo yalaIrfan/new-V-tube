@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {  FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  providers: [UserService]
 })
 export class RegisterComponent implements OnInit {
   rForm: FormGroup;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private userService: UserService) { }
 
   ngOnInit() {
     this.rForm = this.fb.group({
@@ -35,7 +37,12 @@ export class RegisterComponent implements OnInit {
     });
   }
   onSubmit(user) {
-    console.log(user)
+    console.log(user);
+    this.userService.registerUser(user).subscribe(res => {
+      console.log('Registered')
+    }, error => {
+      console.error('error while registering..!');
+    });
   }
 
 }
