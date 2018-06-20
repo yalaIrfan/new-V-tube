@@ -39,12 +39,12 @@ export class RegisterComponent implements OnInit {
   }
   onSubmit(user) {
     console.log('uyhjbjhbjhbjh ', user);
-    this.userService.registerUser(user).subscribe(message => {
+    this.userService.registerUser(user).subscribe((message) => {
       console.log('Registered.! message', JSON.stringify(message));
       this.message = 'Registered successfully..!';
       this.rForm.reset();
-    }, error => {
-      console.error('error while registering..!');
+    }, error => {this.rForm.reset();
+      console.log('error while registering..!');
     });
   }
 

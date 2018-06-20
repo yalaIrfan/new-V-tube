@@ -90,10 +90,11 @@ router.post('/register', function (req, res) {
   
   user.save(function(err,user){
     if(err){
-      return res.status(500).send("There was a problem registering the user.");
+      console.log('There was a problem registering the user.');
+      return res.status(500).json("There was a problem registering the user.");
     }else{
-      console.log(user);
-      return res.status(200).send({message:"User registered succesfully..!"});
+      console.log('User registered succesfully..!');
+      return res.send({message:"User registered succesfully..!"}).status(201);
     }
   });
 });
