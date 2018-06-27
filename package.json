@@ -31,6 +31,7 @@
     "core-js": "^2.4.1",
     "ember-cli-cors": "0.0.2",
     "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.1.0",
     "ngx-toastr": "^8.5.1",
     "rxjs": "^5.5.6",

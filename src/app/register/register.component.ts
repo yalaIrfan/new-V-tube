@@ -37,8 +37,8 @@ export class RegisterComponent implements OnInit {
       ])]
     });
   }
+  
   onSubmit(user) {
-    console.log('uyhjbjhbjhbjh ', user);
     this.userService.registerUser(user).subscribe((message) => {
       console.log('Registered.! message', JSON.stringify(message));
       this.message = 'Registered successfully..!';

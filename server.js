@@ -6,7 +6,7 @@ const api = require('./server/routes/api');
 const users = require('./server/routes/users');
 //var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('./server/config/config'); // get our config file
-var User   = require('./server/models/users'); // get our mongoose model
+var User = require('./server/models/users'); // get our mongoose model
 const app = express();
 app.set('superSecret', config.secret);
 const port = process.env.PORT || 3000;
@@ -17,15 +17,26 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST ,DELET,UPDATE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+  next();
+});
+
 app.use(bodyParser.json());
 
-app.use('/api', api); 
+app.use('/api', api);
 app.use('/api/users', users);
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'))
 });
 
+// app.use(req, res, next) {
+//   res.status(404);
+//   next();
+// }
+
 app.listen(port, function () {
   console.log("Server is listening on PORT : ", port);
 });
-

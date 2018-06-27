@@ -70,8 +70,10 @@ router.put('/video/:id', function (req, res) {
   });
 });
 
-router.delete('/video/:id', function (req, res) {
+router.delete('/video/:id', authPro,function (req, res) {
   console.log('Deleting a video ');
+  // var token = req.headers['auth-token'];
+  // if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
   Video.findByIdAndRemove(req.params.id, function (err, deletedVideo) {
     if (!err)
       res.json(deletedVideo);
@@ -79,4 +81,13 @@ router.delete('/video/:id', function (req, res) {
   });
 })
 
+
+function authPro(req, res, next) {
+  var bearerHeader = req.headers["auth-token"];
+  console.log('bearerHeader ',bearerHeader);
+  return res.status(401).send({ auth: false, message: 'No token provided.' });
+  next();
+}
+
 module.exports = router;
+

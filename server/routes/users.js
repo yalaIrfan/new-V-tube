@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const router = express.Router();
-//const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const User = require('../models/users');
 const _ = require('lodash');
@@ -10,61 +10,46 @@ var bcrypt = require('bcryptjs');
 const db = config.database;
 
 
-router.post('/authenticate', function (req, res) {
+router.post('/login', function (req, res) {
+  console.log('login end point');
   User.findOne({
-    name: req.body.name
+    email: req.body.email
   }, function (err,user) {
     
     if(err) throw err.message;
     
     if(!user){
-        res.json({message:'User not found..!'})
+        res.json({message:'User not found..!'}).status(404);
     }
 
    else if(user){
-      if(user.password != req.body.password){
-        res.json({message:'Password does not match..!'})
-      }
-      else{
-        const payload = {
-          admin:user.admin
-        };
+    bcrypt.compare(req.body.password, user.password, function(err, yes) {
 
-        const token = jwt.sign(payload,'superSecrete'
-        // ,{
-        //   expiresInMinutes: 1440 
-        // }
-      );
+if(err){
+  return res.json({message:'Password does not match..!'}).status(500);
+}
 
-        res.json({
-          success:true,
-          message:'Enjoy your token',
-          token:token
-        })
-      }
-    }
-  });
-});
+const payload = {
+  admin:user.admin
+};
 
-
-router.get('/setup', function (req, res) {
-  console.log('Res for users path');
-
-  const nick = new User({
-    name: 'Irfan H Y',
-    password: 'pass@123',
-    admin: true
-  });
-
-  nick.save(function (err) {
-    if (err) throw err;
-
-    console.log('User saved successfully');
-    res.json({
-      success: true
+const token = jwt.sign(payload,'superSecrete'
+// ,{
+//   expiresInMinutes: 1440 
+// }
+);
+console.log('tokentoken '+token);
+return res.json({
+  auth:true,
+  message:'Enjoy your token',
+  token:token 
+}).status(200);
     });
-  });
+
+    }
+  }); 
 });
+
 
 router.get('/', function (req, res) {
   res.json({
@@ -73,7 +58,7 @@ router.get('/', function (req, res) {
 });
 
 router.get('/all', function (req, res) {
-  console.log('hbhjbhjbjhb');
+  console.log('hbhjb hjbjhb');
   User.find({}, function (err, users) {
     res.json(users);
   });

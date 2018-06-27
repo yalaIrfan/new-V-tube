@@ -69,6 +69,7 @@ export class VideoCenterComponent implements OnInit {
   onDeleteVideoEvent(video: Video) {
     console.log('onDeleteVideo ');
     this.service.deleteVideo(video).subscribe(data => {
+      console.log('guyuyguy gguy vb');
       this.toastr.success('video deleted successfully..! ', 'Success');
       let index = this.videos.indexOf(video);
       this.videos.splice(index, 1);

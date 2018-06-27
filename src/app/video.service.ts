@@ -31,6 +31,8 @@ export class VideoService {
   }
 
   deleteVideo(video){
-    return this.http.delete(this._deleteUrl+video._id);
+    const token=localStorage.getItem('token');
+    let headers = new HttpHeaders({ 'auth-token' :`bearer ${token}`});
+    return this.http.delete(this._deleteUrl+video._id,{headers});
   }
 }
