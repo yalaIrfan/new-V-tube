@@ -1,3 +1,7 @@
+.bod{
+    height: 650px!important ;
+}
+
 .abc{
     -webkit-box-shadow: 10px 10px 5px 0px rgba(207,174,180,1);
 -moz-box-shadow: 10px 10px 5px 0px rgba(207,174,180,1);
@@ -43,7 +47,7 @@ background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 
 } */
 
 .footer {
-    position: absolute;
+    position: relative;
     height: 13%;
     right: 0;
     bottom: 0;
