@@ -59,10 +59,12 @@
             </div>
           </div>
           <div class="card-footer">
-            <button class="btn btn-secondary" disabled='videoForm.invalid' type="submit">Save</button>
+            
+            <button class="btn btn-secondary" [disabled]='!videoForm.valid' type="submit">Save</button>
           </div>
         </form>
       </div>
+     
       <video-detail (updateVideoEvent)="onUpdateVideoEvent($event)" (deleteVideoEvent)="onDeleteVideoEvent($event)" *ngIf="selVideo"
         [video]="selVideo"></video-detail>
     </div>
