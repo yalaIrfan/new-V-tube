@@ -16,12 +16,19 @@
         </li>
         
       </ul>
+      <div *ngIf="isAuth==null">
       <div class="nav-item" style="float: right;margin-right:1.5em; ">
           <a class="nav-link btn btn-secondary" routerLink="/register" routerLinkActive="active">Register</a>
         </div>
-      <div class="nav-item" style="float: right;">
+      <div class="nav-item" style="float: right;margin-right:1.5em;">
           <a class="nav-link btn btn-secondary" routerLink="/login" routerLinkActive="active">Login</a>
         </div>
+      </div>
+      <div *ngIf="isAuth=='true'">
+      <div class="nav-item" style="float: right;">
+        <a class="nav-link btn btn-secondary" (click)="logout()"  routerLinkActive="active">Logout</a>
+      </div>
+    </div>
     </div>
   </div>
 </nav>

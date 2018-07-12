@@ -37,13 +37,14 @@ export class RegisterComponent implements OnInit {
       ])]
     });
   }
-  
+
   onSubmit(user) {
     this.userService.registerUser(user).subscribe((message) => {
       console.log('Registered.! message', JSON.stringify(message));
       this.message = 'Registered successfully..!';
       this.rForm.reset();
-    }, error => {this.rForm.reset();
+    }, error => {
+      this.rForm.reset();
       console.log('error while registering..!');
     });
   }

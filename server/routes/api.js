@@ -1,13 +1,14 @@
+const jwt = require('jsonwebtoken');
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Video = require('../models/video');
 const _ = require('lodash');
 const config = require('../config/config');
-
+const authPro=require('../auth')
 const db = config.database;
 
-mongoose.connect(db, function (err) {
+mongoose.connect(db, { useNewUrlParser: true },function (err) {
   if (!err) console.log("Connected to the mongoDB ");
   else console.log("error while connnecting mongoDb ", err.message);
 });
@@ -72,8 +73,6 @@ router.put('/video/:id', function (req, res) {
 
 router.delete('/video/:id', authPro,function (req, res) {
   console.log('Deleting a video ');
-  // var token = req.headers['auth-token'];
-  // if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
   Video.findByIdAndRemove(req.params.id, function (err, deletedVideo) {
     if (!err)
       res.json(deletedVideo);
@@ -82,12 +81,7 @@ router.delete('/video/:id', authPro,function (req, res) {
 })
 
 
-function authPro(req, res, next) {
-  var bearerHeader = req.headers["auth-token"];
-  console.log('bearerHeader ',bearerHeader);
-  return res.status(401).send({ auth: false, message: 'No token provided.' });
-  next();
-}
+
 
 module.exports = router;
 

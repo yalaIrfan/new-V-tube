@@ -10,6 +10,7 @@ var User = require('./server/models/users'); // get our mongoose model
 const app = express();
 app.set('superSecret', config.secret);
 const port = process.env.PORT || 3000;
+
 //app.use(morgan('dev'));
 
 app.use(express.static(path.join(__dirname, 'dist')));
