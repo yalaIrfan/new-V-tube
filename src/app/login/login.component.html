@@ -40,7 +40,7 @@
         <div class="checkbox">
           <label><input type="checkbox" name="remember"> <span>Remember me</span></label>
         </div>
-        <button type="submit" class="btn btn-info">Login <i class="glyphicon glyphicon-send"></i></button>
+        <button type="submit" [disabled]="rForm.invalid" class="btn btn-info">Login <i class="glyphicon glyphicon-send"></i></button>
       </form>
       </div>
     </div>
