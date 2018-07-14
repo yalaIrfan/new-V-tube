@@ -4,7 +4,7 @@
 <nav class="navbar navbar-expand-lg " >
 
   <div class="container-fluid">
-    <a class="navbar-brand" href="#"> <div class="abc"> V-tube</div></a>
+    <a class="navbar-brand" routerLink="/"> <div class="abc"> V-tube</div></a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
       <ul class="navbar-nav mr-auto" style="width:70%;">
@@ -16,7 +16,7 @@
         </li>
         
       </ul>
-      <div *ngIf="isAuth==null">
+      <div *ngIf="!isAuth">
       <div class="nav-item" style="float: right;margin-right:1.5em; ">
           <a class="nav-link btn btn-secondary" routerLink="/register" routerLinkActive="active">Register</a>
         </div>
@@ -24,7 +24,7 @@
           <a class="nav-link btn btn-secondary" routerLink="/login" routerLinkActive="active">Login</a>
         </div>
       </div>
-      <div *ngIf="isAuth=='true'">
+      <div *ngIf="isAuth">
       <div class="nav-item" style="float: right;">
         <a class="nav-link btn btn-secondary" (click)="logout()"  routerLinkActive="active">Logout</a>
       </div>
@@ -67,7 +67,7 @@
 
 			</div>
 			<div class="col-md-12 text-center ">
-				<h6 class="">Designed and Developped with <span class="zoomIn" style="color: red;">❤</span> by <a href="http://www.github.com/yalaIrfan">IrFaN AaDeEzZ</a> </h6>
+				<h6 class="">Designed and Developped with <span class="zoomIn" style="color: red;">❤</span> by <a href="http://www.github.com/yalaIrfan">Irfan Aadeez</a> </h6>
 			</div>
 		</div>
 	

@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { HomeComponent } from '../home/home.component';
+import { StorageService } from '../shared/storage.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit {
   auth: boolean = false;
   constructor(private fb: FormBuilder,
     private userService: UserService,
+    private storageService:StorageService,
     public route: Router) { }
   rForm: FormGroup;
   ngOnInit() {
@@ -38,8 +40,8 @@ export class LoginComponent implements OnInit {
       this.auth = true;
       this.data = response;
       this.route.navigate(['/videos']);
-      localStorage.setItem('auth', 'true');
-      localStorage.setItem('token', response.token);
+      this.storageService.setItem('auth', true);
+      this.storageService.setItem('token', response.token);
       this.rForm.reset();
     }, error => {
       this.rForm.reset();

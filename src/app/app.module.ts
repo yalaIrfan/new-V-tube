@@ -18,6 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { UserService } from './user.service';
+import { StorageService } from './shared/storage.service';
  
 @NgModule({
   declarations: [
@@ -40,7 +42,7 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [VideoService,ToastrService],
+  providers: [VideoService,ToastrService,UserService,StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

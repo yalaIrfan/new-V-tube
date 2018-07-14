@@ -2,7 +2,7 @@
 <div style="background: rgb(162, 163, 163);border-color: black">
   <h4 class="bbb">Your Playlist :</h4>
 </div>
-<div *ngIf="videos">
+<div *ngIf="videos" class="col-xs-12 col-sm-12 col-mf-12 col-lg-12">
 <ul class="list-group"  *ngFor="let video of videos">
     <a class="lista" (click)="onSelect(video)">
     <li class="list-group-item list-group-item-action"
